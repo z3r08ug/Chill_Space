@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "760931554456",
+    "project_id": "chill-space-4e0ed",
+    "storage_bucket": "chill-space-4e0ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760931554456:android:2a25e98ec38d09f62eaced",
+        "android_client_info": {
+          "package_name": "com.z3r08ug.chillspace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760931554456-jj59ro5ta9eds8rac9n0vtp9ar5jjoap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.z3r08ug.chillspace",
+            "certificate_hash": "fc74c70c06aaa924fab190c7daafa5494b5b2c43"
+          }
+        },
+        {
+          "client_id": "760931554456-1jg94gs6ve44t8j48qmjubruf2ajj2k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWkT9DJ1vJT0rJjdTkk_BbfsuxCjC33GA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760931554456-1jg94gs6ve44t8j48qmjubruf2ajj2k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
