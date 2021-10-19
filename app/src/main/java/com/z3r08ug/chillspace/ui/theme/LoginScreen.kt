@@ -69,7 +69,7 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
                         )
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = {  },
                             modifier = Modifier
                                 .constrainAs(login) {
                                     bottom.linkTo(register.top, margin = 8.dp)
