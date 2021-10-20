@@ -1,32 +1,39 @@
 package com.z3r08ug.chillspace
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
+import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.ui.theme.LoginScreen
 
 class MainActivity : ComponentActivity() {
+    private lateinit var auth: FirebaseAuth
+    private var startRoute = Screen.LoginScreen.route
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            startRoute = Screen.HomeScreen.route
+        }
 
         setContent {
             ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.LoginScreen.route
+                    startDestination = startRoute
                 ) {
                     composable(Screen.LoginScreen.route) { navBackStackEntry ->
-                        LoginScreen(navController, navBackStackEntry.arguments)
+                        LoginScreen(navController, navBackStackEntry.arguments, auth, this@MainActivity)
+                    }
+                    composable(Screen.HomeScreen.route) { navBackStackEntry ->
+                        HomeScreen(navController, navBackStackEntry.arguments, currentUser, this@MainActivity, null, null)
                     }
                 }
             }
