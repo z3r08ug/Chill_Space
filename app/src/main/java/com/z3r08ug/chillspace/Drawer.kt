@@ -28,7 +28,7 @@ fun Drawer(
         screens.forEach { screen ->
             Spacer(Modifier.height(24.dp))
             Text(
-                text = "${screen.resourceId}",
+                text = screen.title,
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier.clickable {
                     onDestinationClicked(screen.route)

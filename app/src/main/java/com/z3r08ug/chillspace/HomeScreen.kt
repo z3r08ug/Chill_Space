@@ -51,16 +51,29 @@ fun HomeScreen(
                         },
                         navigationIcon = {
                             IconButton(onClick = {
-                                if (openDrawer != null) {
-                                    openDrawer()
-                                }
+                                openDrawer()
                             }) {
                                 Icon(Icons.Filled.Menu, contentDescription = "")
                             }
                         })
                 },
                 content = {
+                    ModalDrawer(
+                        drawerContent = {
+                            Drawer(onDestinationClicked = { route ->
+                                scope.launch {
+                                    drawerState.close()
+                                }
+                                navController?.navigate(route) {
+                                    launchSingleTop = true
+                                }
+                            })
+                        },
+                        drawerState = drawerState,
+                        gesturesEnabled = drawerState.isOpen
+                    ) {
 
+                    }
                 }
             )
         }
