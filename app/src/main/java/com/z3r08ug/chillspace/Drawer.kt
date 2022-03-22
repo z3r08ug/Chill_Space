@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @Composable
@@ -23,7 +24,8 @@ fun Drawer(
     ) {
         Image(
             painter = painterResource(R.drawable.chill_space),
-            contentDescription = "App icon"
+            contentDescription = "App icon",
+            modifier = Modifier.size(100.dp)
         )
         screens.forEach { screen ->
             Spacer(Modifier.height(24.dp))
@@ -32,7 +34,8 @@ fun Drawer(
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier.clickable {
                     onDestinationClicked(screen.route)
-                }
+                },
+                fontSize = 18.sp
             )
         }
     }

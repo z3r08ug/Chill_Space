@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        useIR = true
+        jvmTarget = '1.8'
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.compose.core.get()
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(path: ':app')
+    coreLibraryDesugaring libs.desugar
+    implementation libs.kotlin.core
+    implementation libs.timber
+
+    api libs.bundles.compose.core
+    api libs.bundles.compose.navigation
+    api libs.bundles.compose.accompanist
+
+    implementation libs.android.androidx
+    implementation libs.android.appcompat
+    implementation libs.android.materialUi
+    implementation libs.bundles.android.lifecycle
+
+    // Unit Test Dependencies
+    testImplementation libs.bundles.test.core
+    testImplementation libs.bundles.test.android
+
+    // Android Test Dependencies
+    androidTestImplementation libs.bundles.androidTest
+}

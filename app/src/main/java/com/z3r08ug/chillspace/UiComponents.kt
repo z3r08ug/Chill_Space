@@ -45,3 +45,4 @@ fun BottomBar(modifier: Modifier = Modifier, screens: List<Screen>, navControlle
         }
     }
 }
+
