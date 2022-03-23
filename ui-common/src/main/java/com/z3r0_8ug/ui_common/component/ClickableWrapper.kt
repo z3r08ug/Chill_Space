@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component
+package com.z3r0_8ug.ui_common.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,8 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import com.getelements.elements.ui.theme.AppTheme
+import com.getelements.elements.ui.component.AppTextFieldTopPadding
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 /**
  * Wraps the [content] in a clickable wrapper that intercepts

@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.menu
+package com.z3r0_8ug.ui_common.component.menu
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.getelements.elements.ui.theme.AppTheme
 import com.google.accompanist.insets.navigationBarsPadding
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)

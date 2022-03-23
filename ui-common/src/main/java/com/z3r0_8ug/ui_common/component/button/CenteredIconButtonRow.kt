@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.button
+package com.z3r0_8ug.ui_common.component.button
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.getelements.elements.ui.theme.AppTheme
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

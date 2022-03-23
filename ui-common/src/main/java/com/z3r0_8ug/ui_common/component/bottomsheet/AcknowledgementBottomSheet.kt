@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.bottomsheet
+package com.z3r0_8ug.ui_common.component.bottomsheet
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
@@ -18,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.getelements.elements.ui.R
-import com.getelements.elements.ui.theme.AppTheme
 import com.google.accompanist.insets.navigationBarsPadding
+import com.z3r0_8ug.ui_common.R.*
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @Composable
 private fun PreviewFrame(
@@ -98,8 +98,8 @@ fun AcknowledgementBottomSheet(
         .offset(x = 12.dp, y = -(12.dp))
     ) {
       Icon(
-        painter = painterResource(id = R.drawable.ic_close_24dp),
-        contentDescription = stringResource(id = R.string.navigate_close)
+        painter = painterResource(id = drawable.ic_close_24dp),
+        contentDescription = stringResource(id = string.navigate_close)
       )
     }
 
