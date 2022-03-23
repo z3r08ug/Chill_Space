@@ -21,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.getelements.elements.ui.R
-import com.getelements.elements.ui.theme.AppTheme
 import com.google.accompanist.insets.LocalWindowInsets
+import com.z3r0_8ug.ui_common.R
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 /**
  * A container for the content of an edit text to simplify

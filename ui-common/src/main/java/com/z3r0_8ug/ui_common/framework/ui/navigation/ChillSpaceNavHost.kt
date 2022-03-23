@@ -8,7 +8,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 
 @Composable
 @OptIn(ExperimentalAnimationApi::class)
-fun ElementsNavHost(
+fun ChillSpaceNavHost(
   navHostController: NavHostController,
   startDestination: String,
   route: String? = null,

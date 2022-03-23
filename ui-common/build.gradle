@@ -53,14 +53,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.core.get()
     }
-
-    lintOptions {
+    lint {
         abortOnError false
     }
+
 }
 
 dependencies {
-    implementation project(path: ':app')
     coreLibraryDesugaring libs.desugar
     implementation libs.kotlin.core
     implementation libs.timber

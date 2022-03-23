@@ -5,9 +5,9 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.1.0'
-        id 'com.android.library' version '7.1.0'
-        id 'org.jetbrains.kotlin.android' version '1.5.30'
+        id 'com.android.application' version '7.1.2'
+        id 'com.android.library' version '7.1.2'
+        id 'org.jetbrains.kotlin.android' version '1.6.10'
     }
 }
 enableFeaturePreview('VERSION_CATALOGS')
@@ -102,6 +102,8 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Chill Space"
-include ':app'
+
 include ':ui-common'
+include ':app'
+
+rootProject.name = "Chill Space"

@@ -253,7 +253,7 @@ fun <T, L : MutableLiveData<T>> L.startWith(initialValue: T): L {
  */
 @MainThread
 fun <T, I> MutableLiveData<T>.startWith(startSource: LiveData<I>, ignoreNull: Boolean = false, transform: (I) -> T): MutableLiveData<T> {
-  return BuggyCallbackLiveData<T>(
+  return CallbackLiveData<T>(
     onValueSet = {
       this.value = it
     }
