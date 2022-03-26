@@ -5,4 +5,98 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="settings">Settings</string>
+
+    <string name="show_password">Show Password</string>
+    <string name="hide_password">Hide Password</string>
+
+
+    <string name="auth_sign_in">Sign In</string>
+    <string name="auth_sign_out">Sign Out</string>
+    <string name="auth_reset_send">Send</string>
+    <string name="auth_id_or_login">Elements ID or Email</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_username">Username</string>
+    <string name="auth_delete_account">Delete Account</string>
+    <string name="auth_delete_account_title">Are you sure you want to delete your Elements Account?</string>
+    <string name="auth_delete_account_message">If you delete your account, your financial information will be discarded and you will no longer be connected to your advisor (if applicable). This action cannot be undone.</string>
+    <string name="auth_invalid_username_empty">Your Elements ID cannot be empty</string>
+    <string name="auth_invalid_username_email">Your Elements ID cannot be an email address</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_password_reset">Reset Password</string>
+    <string name="auth_password_reset_expired_title">Dang. Password reset code expired.</string>
+    <string name="auth_password_reset_expired_message">It looks like the button you clicked in the reset password email was too old. Would you like us to send you a new email so you can finish resetting your password?</string>
+    <string name="auth_password_reset_expired_action">Resend Reset Email</string>
+    <string name="auth_password_update">Update Password</string>
+    <string name="auth_password_current">Current Password</string>
+    <string name="auth_password_new">New Password</string>
+    <string name="auth_invalid_password_requirements">Password must be at least 8 characters</string>
+    <string name="auth_forgot_password">Forgot Password?</string>
+    <string name="auth_no_account_question">Don\'t have an account?</string>
+    <string name="auth_have_account">Already have an account?</string>
+    <string name="auth_create">Create</string>
+    <string name="auth_create_account">Create Account</string>
+    <string name="auth_invalid_credentials">Whoops… Invalid Username or Password</string>
+    <string name="auth_invalid_credentials_message">The username or password you entered was incorrect. Please try again.</string>
+    <string name="auth_username_unavailable">Dang… Email or Username Claimed</string>
+    <string name="auth_username_unavailable_message">The email or username you entered is already claimed. Please try another email or username.</string>
+    <string name="auth_create_failed">Creation Failed</string>
+    <string name="auth_create_failed_message">Something bad happened. Please try again.</string>
+    <string name="auth_password_reset_no_worries">No worries. It happens to the best of us.</string>
+    <string name="auth_password_reset_message">Enter your email address and we\'ll send you a secret code that you can enter to sign into your account and update your password.</string>
+    <string name="auth_password_reset_error_message">An unknown error occurred while requesting a password reset email. Please try again!</string>
+
+    <string name="logout_notice">Did you miss us?</string>
+    <string name="logout_notice_message">We know your financial life is important to you. Sign back in to keep it healthy.</string>
+    <string name="logout_new_to_elements">New to Elements?</string>
+    <string name="logout_create_account">Create an account</string>
+
+    <string name="account_delete_notice">Sorry to see you go.</string>
+    <string name="account_delete_notice_message">If you change your mind, we\'re here for you.</string>
+    <string name="got_it">Got it</string>
+    <string name="snooze">Snooze</string>
+
+    <string name="welcome_legal">By continuing, you confirm that you have read our</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <!-- Accessibility Labels -->
+    <string name="navigate_up">navigate up</string>
+    <string name="navigate_delete">delete</string>
+    <string name="navigate_close">close</string>
+    <string name="menu">Menu</string>
+
+    <!-- Error -->
+    <string name="error_alert_title">Oops!</string>
+    <string name="error_unknown">Whoops!</string>
+    <string name="error_unknown_message">Something went wrong. Please try again later.</string>
+    <string name="error_try_again">Try Again</string>
+
+    <!-- Offline -->
+    <string name="offline_title">Looks like you\'re offline.</string>
+    <string name="offline_message">It looks like you can\'t connect to the internet right now. We can\'t process your request until you\'re back online. Double-check your connection and try again.</string>
+
+    <!-- Other -->
+    <string name="save">Save</string>
+    <string name="input_error">Input Error</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="done">Done</string>
+    <string name="okay">Okay</string>
+
+    <string name="required_field">*Required</string>
+    <string name="percent_symbol">%</string>
+
+    <!-- Generic -->
+    <string name="and">and</string>
+    <string name="dot">.</string>
+    <string name="comma">,</string>
+
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="disclaimers">Disclaimers</string>
+
+    <plurals name="prompts_title">
+        <item quantity="zero">%d Tasks</item>
+        <item quantity="one">%d Task</item>
+        <item quantity="other">%d Tasks</item>
+    </plurals>
 </resources>
