@@ -1,5 +1,6 @@
 package com.z3r08ug.chillspace.ui.theme
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,7 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
@@ -36,11 +36,14 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
+import com.z3r08ug.chillspace.Screen
+import com.z3r08ug.chillspace.utils.FirebaseUtils
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
+fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: FirebaseAuth?, activity: Activity?) {
     ChillSpaceTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -52,6 +55,13 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
                 }
             },
                 content = {
+                    var emailText by rememberSaveable { mutableStateOf("") }
+                    var passwordText by rememberSaveable { mutableStateOf("") }
+                    val isValid =
+                        (emailText.count() > 5 && '@' in emailText) || emailText.count() == 0
+                    val focusRequester = remember { FocusRequester() }
+                    val keyboardController = LocalSoftwareKeyboardController.current
+
                     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
                         val (logo, email, password, login, register, emailError) = createRefs()
 
@@ -69,7 +79,12 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
                         )
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = {
+                                val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText)
+                                if (user != null) {
+                                    navController?.navigate(Screen.HomeScreen.route)
+                                }
+                                      },
                             modifier = Modifier
                                 .constrainAs(login) {
                                     bottom.linkTo(register.top, margin = 8.dp)
@@ -121,13 +136,6 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
                                 }
                                 .padding(16.dp),
                             onClick = { })
-
-                        var emailText by rememberSaveable { mutableStateOf("") }
-                        var passwordText by rememberSaveable { mutableStateOf("") }
-                        val isValid =
-                            (emailText.count() > 5 && '@' in emailText) || emailText.count() == 0
-                        val focusRequester = remember { FocusRequester() }
-                        val keyboardController = LocalSoftwareKeyboardController.current
 
                         OutlinedTextField(
                             value = emailText,
@@ -207,5 +215,5 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?) {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    LoginScreen(null, null)
+    LoginScreen(null, null, null, null)
 }

@@ -5,17 +5,103 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.1.2'
-        id 'com.android.library' version '7.1.2'
+        id 'com.android.application' version '7.1.0'
+        id 'com.android.library' version '7.1.0'
         id 'org.jetbrains.kotlin.android' version '1.5.30'
     }
 }
+enableFeaturePreview('VERSION_CATALOGS')
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
+
+    versionCatalogs {
+        libs {
+            // Kotlin
+            version('kotlin-core', '1.6.10')
+            version('kotlin-coroutines', '1.6.0')
+            alias('kotlin-core').to('org.jetbrains.kotlin', 'kotlin-stdlib').versionRef('kotlin-core')
+            alias('kotlin-coroutines').to('org.jetbrains.kotlinx', 'kotlinx-coroutines-core').versionRef('kotlin-coroutines')
+            bundle('kotlin', ['kotlin-core', 'kotlin-coroutines'])
+
+
+            // Android Misc
+            alias('android-androidx').to('androidx.core', 'core-ktx').version('1.7.0')
+            alias('android-appcompat').to('androidx.appcompat', 'appcompat').version('1.4.1')
+            alias('android-materialUi').to('com.google.android.material', 'material').version('1.5.0')
+            alias('timber').to('com.jakewharton.timber', 'timber').version('5.0.1')
+            alias('desugar').to('com.android.tools', 'desugar_jdk_libs').version('1.1.5')
+
+
+            // Android Lifecycle
+            version('android-lifecycle', '2.4.1')
+            alias('android-lifecycle-common').to('androidx.lifecycle', 'lifecycle-common-java8').versionRef('android-lifecycle')
+            alias('android-lifecycle-compose').to('androidx.lifecycle', 'lifecycle-viewmodel-compose').versionRef('android-lifecycle')
+            alias('android-lifecycle-liveData').to('androidx.lifecycle', 'lifecycle-livedata-ktx').versionRef('android-lifecycle')
+            alias('android-lifecycle-process').to('androidx.lifecycle', 'lifecycle-process').versionRef('android-lifecycle')
+            alias('android-lifecycle-viewModel').to('androidx.lifecycle', 'lifecycle-viewmodel-ktx').versionRef('android-lifecycle')
+            alias('android-lifecycle-savedSate').to('androidx.lifecycle', 'lifecycle-viewmodel-savedstate').versionRef('android-lifecycle')
+            bundle('android-lifecycle', ['android-lifecycle-common', 'android-lifecycle-compose', 'android-lifecycle-liveData', 'android-lifecycle-process', 'android-lifecycle-viewModel', 'android-lifecycle-savedSate'])
+
+
+            // Compose
+            version('compose-core', '1.1.0')
+            alias('compose-ui').to('androidx.compose.ui', 'ui').versionRef('compose-core')
+            alias('compose-material2').to('androidx.compose.material', 'material').versionRef('compose-core')
+            alias('compose-liveData').to('androidx.compose.runtime', 'runtime-livedata').versionRef('compose-core')
+            alias('compose-tooling').to('androidx.compose.ui', 'ui-tooling').versionRef('compose-core')
+            alias('compose-toolingPreview').to('androidx.compose.ui', 'ui-tooling').versionRef('compose-core')
+            bundle('compose-core', ['compose-ui', 'compose-material2', 'compose-liveData', 'compose-tooling', 'compose-toolingPreview'])
+
+
+            // Compose Accompanist
+            version('compose-accompanist', '0.23.0')
+            alias('accompanist-flow').to('com.google.accompanist', 'accompanist-flowlayout').versionRef('compose-accompanist')
+            alias('accompanist-system').to('com.google.accompanist', 'accompanist-systemuicontroller').versionRef('compose-accompanist')
+            alias('accompanist-insets').to('com.google.accompanist', 'accompanist-insets').versionRef('compose-accompanist')
+            alias('accompanist-insetsUi').to('com.google.accompanist', 'accompanist-insets-ui').versionRef('compose-accompanist')
+            alias('accompanist-placeholder').to('com.google.accompanist', 'accompanist-placeholder-material').versionRef('compose-accompanist')
+            bundle('compose-accompanist', ['accompanist-flow', 'accompanist-system', 'accompanist-insets', 'accompanist-insetsUi', 'accompanist-placeholder'])
+
+
+            // Compose Navigation
+            alias('compose-navigation-core').to('androidx.navigation', 'navigation-compose').version('2.4.1')
+            alias('compose-navigation-animation').to('com.google.accompanist', 'accompanist-navigation-animation').versionRef('compose-accompanist')
+            alias('compose-navigation-hilt').to('androidx.hilt', 'hilt-navigation-compose').version('1.0.0')
+            bundle('compose-navigation', ['compose-navigation-core', 'compose-navigation-animation', 'compose-navigation-hilt'])
+
+
+            // Dagger / Hilt
+            version('hilt-core', '2.41')
+            alias('hilt-android').to('com.google.dagger', 'hilt-android').versionRef('hilt-core')
+            alias('hilt-compiler').to('com.google.dagger', 'hilt-compiler').versionRef('hilt-core')
+
+            version('hilt-work', '1.0.0')
+            alias('hilt-work-core').to('androidx.hilt', 'hilt-work').versionRef('hilt-work')
+            alias('hilt-work-compiler').to('androidx.hilt', 'hilt-compiler').versionRef('hilt-work')
+
+
+            // Test
+            alias('test-junit').to('junit', 'junit').version('4.13.2')
+            alias('test-mockk').to('io.mockk', 'mockk').version('1.12.2')
+            alias('test-coroutines').to('org.jetbrains.kotlinx', 'kotlinx-coroutines-test').version('1.6.0')
+            bundle('test-core', ['test-junit', 'test-mockk', 'test-coroutines'])
+
+            alias('test-robolectric').to('org.robolectric', 'robolectric').version('4.7.3')
+            alias('test-androidx').to('androidx.arch.core', 'core-testing').version('2.1.0')
+            bundle('test-android', ['test-robolectric', 'test-androidx'])
+
+
+            // Android Test
+            alias('androidTest-junit').to('androidx.test.ext', 'junit').version('1.1.3')
+            alias('androidTest-espresso').to('androidx.test.espresso', 'espresso-core').version('3.4.0')
+            bundle('androidTest', ['androidTest-junit', 'androidTest-espresso'])
+        }
+    }
 }
 rootProject.name = "Chill Space"
 include ':app'
+include ':ui-common'
