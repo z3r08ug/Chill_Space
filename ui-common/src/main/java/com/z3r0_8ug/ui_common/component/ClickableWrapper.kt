@@ -9,7 +9,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import com.getelements.elements.ui.component.AppTextFieldTopPadding
+import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.z3r0_8ug.ui_common.theme.AppTheme
 
 /**

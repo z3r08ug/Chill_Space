@@ -5,9 +5,16 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.1.2'
-        id 'com.android.library' version '7.1.2'
+        id 'com.android.application' version '7.2.0'
+        id 'com.android.library' version '7.2.0'
         id 'org.jetbrains.kotlin.android' version '1.6.10'
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if( requested.id.id == 'dagger.hilt.android.plugin') {
+                useModule("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
+            }
+        }
     }
 }
 enableFeaturePreview('VERSION_CATALOGS')

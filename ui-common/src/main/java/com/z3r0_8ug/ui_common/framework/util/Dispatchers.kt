@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.framework.util
+package com.z3r0_8ug.ui_common.framework.util
 
 import kotlinx.coroutines.Dispatchers
 

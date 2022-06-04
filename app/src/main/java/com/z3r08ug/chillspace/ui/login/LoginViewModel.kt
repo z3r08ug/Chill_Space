@@ -3,10 +3,10 @@ package com.z3r08ug.chillspace.ui.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.getelements.elements.ui.framework.util.Dispatchers
 import com.z3r08ug.chillspace.AuthResult
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.asInputData
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.merge
+import com.z3r0_8ug.ui_common.framework.util.Dispatchers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,10 +16,10 @@ class LoginViewModel @Inject constructor(
     dispatchers: Dispatchers,
 //    private val accountService: AccountService,
 ) : ViewModel() {
-    val login = savedState.getLiveData("login", "").asInputData()
+    val username = savedState.getLiveData("login", "").asInputData()
     val password = MutableLiveData("").asInputData()
 
-    val loginAllowed = login.merge(password) { username, pass ->
+    val loginAllowed = username.merge(password) { username, pass ->
         !username.value.isNullOrBlank() && !pass.value.isNullOrBlank()
     }
 

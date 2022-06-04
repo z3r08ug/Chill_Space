@@ -1,6 +1,7 @@
 package com.z3r08ug.chillspace.ui.theme
 
 import android.app.Activity
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,8 +41,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.Screen
 import com.z3r08ug.chillspace.utils.FirebaseUtils
+import com.z3r0_8ug.ui_common.component.AppScaffold
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: FirebaseAuth?, activity: Activity?) {
     ChillSpaceTheme {
@@ -49,11 +51,10 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: Fir
             modifier = Modifier.fillMaxSize(),
             color = Color.DarkGray
         ) {
-            Scaffold(topBar = {
-                TopAppBar(backgroundColor = MaterialTheme.colors.secondary) {
+            AppScaffold(
+                toolbar = {
                     Text(text = "", fontSize = 30.sp)
-                }
-            },
+                },
                 content = {
                     var emailText by rememberSaveable { mutableStateOf("") }
                     var passwordText by rememberSaveable { mutableStateOf("") }
@@ -213,6 +214,10 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: Fir
 }
 
 @Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+    uiMode = UI_MODE_NIGHT_YES
+)
 @Composable
 fun HomeScreenPreview() {
     LoginScreen(null, null, null, null)

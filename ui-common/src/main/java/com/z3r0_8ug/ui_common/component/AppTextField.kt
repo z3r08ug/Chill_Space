@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component
+package com.z3r0_8ug.ui_common.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

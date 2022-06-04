@@ -16,7 +16,8 @@ val darkColors = AppColors(
   primary = SharedColors.darkGray,
   primaryDark = SharedColors.almostBlack,
   primaryVariant = Color(0xff585f66),
-  secondary = Color(0xff4af196),
+//  secondary = Color(0xff4af196),
+  secondary = Color(0xFF13A6F0),
   error = SharedColors.error,
 
   surface = Color(0xff242629),
@@ -64,7 +65,8 @@ val lightColors = darkColors.copy(
   primary = Color(0xfff6f9f9),
   primaryDark = SharedColors.mediumGray,
   primaryVariant = Color(0xffffffff),
-  secondary = Color(0xff19be81),
+//  secondary = Color(0xff4af196),
+  secondary = Color(0xFF13A6F0),
 
   surface = Color(0xffffffff),
   background = Color(0xfff6f9f9),

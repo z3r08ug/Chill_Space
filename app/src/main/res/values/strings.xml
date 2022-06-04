@@ -13,7 +13,7 @@
     <string name="auth_sign_in">Sign In</string>
     <string name="auth_sign_out">Sign Out</string>
     <string name="auth_reset_send">Send</string>
-    <string name="auth_id_or_login">Elements ID or Email</string>
+    <string name="auth_id_or_login">Chill Space ID or Email</string>
     <string name="auth_email">Email</string>
     <string name="auth_username">Username</string>
     <string name="auth_delete_account">Delete Account</string>

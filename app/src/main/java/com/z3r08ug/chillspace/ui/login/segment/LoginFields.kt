@@ -15,8 +15,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.getelements.elements.ui.component.AppTextField
-import com.getelements.elements.ui.component.AppTextFieldTopPadding
+import com.z3r0_8ug.ui_common.component.AppTextField
+import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.ui.shared.ui.component.PasswordTextField
 import com.z3r0_8ug.ui_common.framework.ui.InputData

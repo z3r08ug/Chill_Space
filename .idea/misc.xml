@@ -36,6 +36,15 @@
         <entry key="../../../../layout/compose-model-1648308275229.xml" value="0.14852513502285003" />
         <entry key="../../../../layout/compose-model-1648308594670.xml" value="0.14852513502285003" />
         <entry key="../../../../layout/compose-model-1648308692667.xml" value="0.15555555555555556" />
+        <entry key="../../../../layout/compose-model-1648312447136.xml" value="0.30046160302140157" />
+        <entry key="../../../../layout/compose-model-1648328118851.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648329573115.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1648329826623.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1648330021602.xml" value="0.2796296296296296" />
+        <entry key="app/src/main/java/com/z3r08ug/chillspace/ui/login/LoginScreen.kt" value="0.29857022708158115" />
+        <entry key="app/src/main/java/com/z3r08ug/chillspace/ui/login/NewLoginScreen.kt" value="0.5269541778975741" />
+        <entry key="app/src/main/java/com/z3r08ug/chillspace/ui/login/segment/LoginFields.kt" value="0.75" />
+        <entry key="ui-common/src/main/java/com/z3r0_8ug/ui_common/component/AppTextField.kt" value="0.1" />
       </map>
     </option>
   </component>

@@ -56,6 +56,7 @@ android {
     lint {
         abortOnError false
     }
+    namespace 'com.z3r0_8ug.ui_common'
 
 }
 

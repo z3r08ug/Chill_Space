@@ -26,13 +26,15 @@ fun AppScaffold(
   bottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden),
   showBottomSheet: Boolean = false,
   onBottomSheetClosed: (() -> Unit)? = null,
+  floatingActionButton: @Composable () -> Unit = {},
   content: @Composable (PaddingValues) -> Unit
 ) {
   if (bottomSheet == null) {
     MainScaffold(
       showContentScrim = showContentScrim,
       toolbar = toolbar,
-      content = content
+      content = content,
+      floatingActionButton = floatingActionButton
     )
 
     return
@@ -50,7 +52,8 @@ fun AppScaffold(
     MainScaffold(
       showContentScrim = showContentScrim,
       toolbar = toolbar,
-      content = content
+      content = content,
+      floatingActionButton = floatingActionButton
     )
   }
 
@@ -89,6 +92,7 @@ fun AppScaffold(
 private fun MainScaffold(
   showContentScrim: Boolean,
   toolbar: @Composable () -> Unit,
+  floatingActionButton: @Composable () -> Unit,
   content: @Composable (PaddingValues) -> Unit
 ) {
   var showScrim by remember { mutableStateOf(false) }

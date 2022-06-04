@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import com.getelements.elements.ui.component.AppTextField
-import com.getelements.elements.ui.component.AppTextFieldTopPadding
+import com.z3r0_8ug.ui_common.component.AppTextField
+import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.z3r0_8ug.ui_common.R
 import com.z3r0_8ug.ui_common.component.ClickableTextFieldWrapper
 import com.z3r0_8ug.ui_common.theme.AppTheme
