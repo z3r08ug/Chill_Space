@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Accessibility Labels -->
+    <string name="navigate_up">navigate up</string>
+    <string name="navigate_delete">delete</string>
+    <string name="navigate_close">close</string>
+    <string name="menu">Menu</string>
+
+    <!-- Error -->
+    <string name="error_alert_title">Oops!</string>
+    <string name="error_unknown">Whoops!</string>
+    <string name="error_unknown_message">Something went wrong. Please try again later.</string>
+    <string name="error_try_again">Try Again</string>
+
+    <!-- Offline -->
+    <string name="offline_title">Looks like you\'re offline.</string>
+    <string name="offline_message">It looks like you can\'t connect to the internet right now. We can\'t process your request until you\'re back online. Double-check your connection and try again.</string>
+
+    <!-- Other -->
+    <string name="save">Save</string>
+    <string name="input_error">Input Error</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="done">Done</string>
+    <string name="got_it">Got It</string>
+    <string name="okay">Okay</string>
+
+    <string name="required_field">*Required</string>
+    <string name="percent_symbol">%</string>
+
+    <!-- Generic -->
+    <string name="and">and</string>
+    <string name="dot">.</string>
+    <string name="comma">,</string>
+</resources>

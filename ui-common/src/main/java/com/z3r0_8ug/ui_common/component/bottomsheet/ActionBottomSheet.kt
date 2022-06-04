@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.bottomsheet
+package com.z3r0_8ug.ui_common.component.bottomsheet
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
@@ -16,10 +16,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.getelements.elements.ui.R
-import com.getelements.elements.ui.component.button.AppFilledButton
-import com.getelements.elements.ui.theme.AppTheme
+import com.z3r0_8ug.ui_common.component.button.AppFilledButton
 import com.google.accompanist.insets.navigationBarsPadding
+import com.z3r0_8ug.ui_common.R
+import com.z3r0_8ug.ui_common.R.*
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @Composable
 private fun PreviewFrame(
@@ -121,8 +122,8 @@ fun ActionBottomSheet(
         .offset(x = 12.dp, y = -(8.dp))
     ) {
       Icon(
-        painter = painterResource(R.drawable.ic_close_24dp),
-        contentDescription = stringResource(R.string.navigate_close),
+        painter = painterResource(drawable.ic_close_24dp),
+        contentDescription = stringResource(string.navigate_close),
         tint = AppTheme.colors.secondary
       )
     }

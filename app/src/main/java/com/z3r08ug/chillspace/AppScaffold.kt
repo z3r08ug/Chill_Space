@@ -13,6 +13,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import com.z3r0_8ug.ui_common.framework.ui.navigation.InterceptBackNavigation
+import com.z3r0_8ug.ui_common.theme.AppTheme
 import kotlinx.coroutines.launch
 
 @Composable

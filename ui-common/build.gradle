@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'kotlin-parcelize'
+
 android {
     compileSdk 32
 
@@ -51,14 +53,14 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.compose.core.get()
     }
-
-    lintOptions {
+    lint {
         abortOnError false
     }
+    namespace 'com.z3r0_8ug.ui_common'
+
 }
 
 dependencies {
-    implementation project(path: ':app')
     coreLibraryDesugaring libs.desugar
     implementation libs.kotlin.core
     implementation libs.timber

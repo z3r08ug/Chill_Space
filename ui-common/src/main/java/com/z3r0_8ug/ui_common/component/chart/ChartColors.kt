@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.chart
+package com.z3r0_8ug.ui_common.component.chart
 
 import androidx.compose.ui.graphics.Color
 

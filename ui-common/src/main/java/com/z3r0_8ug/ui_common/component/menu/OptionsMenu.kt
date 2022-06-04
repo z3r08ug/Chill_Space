@@ -1,4 +1,4 @@
-package com.getelements.elements.ui.component.menu
+package com.z3r0_8ug.ui_common.component.menu
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.*
@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.getelements.elements.ui.R
-import com.getelements.elements.ui.theme.AppTheme
+import com.z3r0_8ug.ui_common.R
+import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @Composable
 fun OptionsMenu(
