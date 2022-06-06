@@ -1,9 +1,15 @@
 package com.z3r08ug.chillspace.ui.login
 
+import android.app.Activity
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.AuthResult
+import com.z3r08ug.chillspace.Screen.HomeScreen
+import com.z3r08ug.chillspace.utils.FirebaseUtils
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.asInputData
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.merge
 import com.z3r0_8ug.ui_common.framework.util.Dispatchers
@@ -14,7 +20,6 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     savedState: SavedStateHandle,
     dispatchers: Dispatchers,
-//    private val accountService: AccountService,
 ) : ViewModel() {
     val username = savedState.getLiveData("login", "").asInputData()
     val password = MutableLiveData("").asInputData()
@@ -25,20 +30,15 @@ class LoginViewModel @Inject constructor(
 
     val loginState = MutableLiveData(LoginState.PENDING)
 
-    private val loginRequested = MutableLiveData<Void?>()
-//    val loginResult = loginRequested.switchMap {
-//        val username = login.value?.value ?: ""
-//        val pass = password.value?.value ?: ""
-//
-//        accountService.login(username, pass).onEach {
-//            updateLoginState(it)
-//        }.asLiveData(dispatchers.io)
-//    }
-
-    fun login() {
+    fun login(activity: Activity?, auth: FirebaseAuth?, emailText: String, passwordText: String, onLogin: () -> Unit) {
         if (loginAllowed.value == true) {
             loginState.postValue(LoginState.SENDING)
-            loginRequested.postValue(null)
+            val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText)
+            if (user != null) {
+                onLogin()
+            } else {
+                loginState.postValue(LoginState.FAILURE)
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 package com.z3r08ug.chillspace.ui.login
 
+import android.app.Activity
 import android.content.res.Configuration
+import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
@@ -23,13 +25,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavHostController
 import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.R.string
+import com.z3r08ug.chillspace.Screen.LoginScreen
 import com.z3r08ug.chillspace.ui.login.segment.CredentialsErrorBottomSheet
 import com.z3r08ug.chillspace.ui.login.segment.LoginFields
 import com.z3r08ug.chillspace.ui.login.segment.SupportFields
+import com.z3r08ug.chillspace.utils.MainViewModel
 import com.z3r0_8ug.ui_common.component.AppScaffold
 import com.z3r0_8ug.ui_common.component.NavIconStyle
 import com.z3r0_8ug.ui_common.component.Toolbar
@@ -40,24 +46,39 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun NewLoginScreen(
+    navController: NavHostController?,
     viewModel: LoginViewModel?,
+    mainViewModel: MainViewModel?,
+    arguments: Bundle?,
+    auth: FirebaseAuth?,
+    activity: Activity?,
     onClose: () -> Unit,
     onComplete: () -> Unit,
     onForgotPassword: () -> Unit,
-    onCreateAccount: () -> Unit
+    onCreateAccount: () -> Unit,
+    onLogin: () -> Unit
 ) {
+    mainViewModel?.setCurrentScreen(LoginScreen)
     viewModel?.loginState?.let {
         ScreenContent(
-        loginState = it,
-        loginAllowed = viewModel.loginAllowed,
-        username = viewModel.username,
-        password = viewModel.password,
-        login = { viewModel.login() },
-        onForgotPassword = { onForgotPassword() },
-        onCreateAccount = { onCreateAccount() },
-        onClose = { onClose() },
-        onComplete = { onComplete() }
-    )
+            loginState = it,
+            loginAllowed = viewModel.loginAllowed,
+            username = viewModel.username,
+            password = viewModel.password,
+            login = {
+                viewModel.login(
+                    activity = activity,
+                    auth = auth,
+                    emailText = viewModel.username.value?.value ?: "",
+                    passwordText = viewModel.password.value?.value ?: "",
+                    onLogin = { onLogin }
+                )
+            },
+            onForgotPassword = { onForgotPassword() },
+            onCreateAccount = { onCreateAccount() },
+            onClose = { onClose() },
+            onComplete = { onComplete() }
+        )
     }
 }
 
@@ -65,7 +86,7 @@ fun NewLoginScreen(
 fun ScreenContent(
     loginState: MutableLiveData<LoginViewModel.LoginState>,
     loginAllowed: MutableLiveData<Boolean>,
-    username: LiveData<InputData<String?>>,
+    username: LiveData<InputData<String>>,
     password: LiveData<InputData<String?>>,
     login: () -> Unit,
     onForgotPassword: () -> Unit,
@@ -76,13 +97,13 @@ fun ScreenContent(
     val loginState by loginState.observeAsState(LoginViewModel.LoginState.PENDING)
     val allowLogin by loginAllowed.observeAsState(false)
 
-    val username by username.observeAsState(emptyInput())
+    val username by username.observeAsState("")
     val password by password.observeAsState(emptyInput())
 
     Screen(
         loginState = loginState,
         allowLogin = allowLogin,
-        username = username,
+        username = username as InputData<String?>,
         password = password,
         login = login,
         onForgotPassword = onForgotPassword,
@@ -218,6 +239,12 @@ private fun ScreenFrame(
 fun LoginScreenPreview() {
     NewLoginScreen(
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {},
         {},
         {},
         {},

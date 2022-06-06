@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseUser
+import com.z3r08ug.chillspace.ui.home.HomeViewModel
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
 import com.z3r08ug.chillspace.utils.MainViewModel
 import kotlinx.coroutines.launch
@@ -21,13 +22,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     navController: NavHostController?,
+    mainViewModel: MainViewModel?,
+    viewModel: HomeViewModel?,
     arguments: Bundle?,
     user: FirebaseUser?,
     activity: Activity?,
     openDrawer: (() -> Unit)?,
-    viewModel: MainViewModel?
 ) {
-    viewModel?.setCurrentScreen(Screen.HomeScreen)
+    mainViewModel?.setCurrentScreen(Screen.HomeScreen)
 
     val scaffoldState = rememberScaffoldState()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -52,7 +54,7 @@ fun HomeScreen(
                 topBar = {
                     TopAppBar(
                         backgroundColor = MaterialTheme.colors.secondary,
-                        title = {navController
+                        title = {
                             Text(text = "Home")
                         },
                         navigationIcon = {
@@ -96,9 +98,13 @@ fun HomeScreen(
 @Preview
 @Composable
 fun previewHomeScreen() {
-    HomeScreen(navController = null, arguments = null, user = null, activity = null, openDrawer = { open() }, null)
-}
-
-fun open(): Unit {
-
+    HomeScreen(
+        navController = null,
+        mainViewModel = null,
+        viewModel = null,
+        arguments = null,
+        user = null,
+        activity = null,
+        openDrawer = {  }
+    )
 }

@@ -10,8 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.ui.login.NewLoginScreen
-import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
-import com.z3r08ug.chillspace.ui.theme.LoginScreen
+import com.z3r08ug.chillspace.ui.login.LoginScreen
 import com.z3r0_8ug.ui_common.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,20 +47,28 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Screen.NewLoginScreen.route) { navBackStackEntry ->
                             NewLoginScreen(
-                                hiltViewModel(),
+                                navController = navController,
+                                viewModel = hiltViewModel(),
+                                mainViewModel = hiltViewModel(),
+                                activity = this@MainActivity,
+                                auth = auth,
+                                arguments = navBackStackEntry.arguments,
+                                onLogin = { navController.navigate(Screen.HomeScreen.route) },
                                 onClose = { navController.popBackStack() },
                                 onComplete = { navController.popBackStack() },
-                                onForgotPassword = {}
-                            ) {}
+                                onForgotPassword = {},
+                                onCreateAccount = {}
+                            )
                         }
                         composable(Screen.HomeScreen.route) { navBackStackEntry ->
                             HomeScreen(
-                                navController,
-                                navBackStackEntry.arguments,
-                                currentUser,
-                                this@MainActivity,
-                                null,
-                                null
+                                navController = navController,
+                                mainViewModel = hiltViewModel(),
+                                viewModel = hiltViewModel(),
+                                arguments = navBackStackEntry.arguments,
+                                user = currentUser,
+                                activity = this@MainActivity,
+                                openDrawer = null
                             )
                         }
                     }
