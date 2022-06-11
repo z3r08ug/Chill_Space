@@ -25,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavHostController
 import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.firebase.auth.FirebaseAuth
@@ -46,7 +45,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun NewLoginScreen(
-    navController: NavHostController?,
     viewModel: LoginViewModel?,
     mainViewModel: MainViewModel?,
     arguments: Bundle?,
@@ -71,14 +69,13 @@ fun NewLoginScreen(
                     auth = auth,
                     emailText = viewModel.username.value?.value ?: "",
                     passwordText = viewModel.password.value?.value ?: "",
-                    onLogin = { onLogin }
+                    onLogin = { onLogin() }
                 )
             },
             onForgotPassword = { onForgotPassword() },
             onCreateAccount = { onCreateAccount() },
-            onClose = { onClose() },
-            onComplete = { onComplete() }
-        )
+            onClose = { onClose }
+        ) { onComplete() }
     }
 }
 
@@ -86,7 +83,7 @@ fun NewLoginScreen(
 fun ScreenContent(
     loginState: MutableLiveData<LoginViewModel.LoginState>,
     loginAllowed: MutableLiveData<Boolean>,
-    username: LiveData<InputData<String>>,
+    username: LiveData<InputData<String?>>,
     password: LiveData<InputData<String?>>,
     login: () -> Unit,
     onForgotPassword: () -> Unit,
@@ -97,7 +94,7 @@ fun ScreenContent(
     val loginState by loginState.observeAsState(LoginViewModel.LoginState.PENDING)
     val allowLogin by loginAllowed.observeAsState(false)
 
-    val username by username.observeAsState("")
+    val username by username.observeAsState(emptyInput())
     val password by password.observeAsState(emptyInput())
 
     Screen(
@@ -124,7 +121,7 @@ private fun Screen(
     onCreateAccount: () -> Unit,
     onClose: () -> Unit,
     onComplete: () -> Unit
-    ) {
+) {
     val scrollState = rememberScrollState()
 
     ScreenFrame(
@@ -162,7 +159,9 @@ private fun Screen(
 
             SupportFields(
                 onForgotPasswordClick = onForgotPassword,
-                onCreateAccountClick = onCreateAccount
+                onCreateAccountClick = {
+                    onCreateAccount()
+                }
             )
         }
     }
@@ -206,20 +205,14 @@ private fun ScreenFrame(
                     focusManager.clearFocus()
                     login()
                 },
-                onNavIconClick = onClose,
+                onNavIconClick = { onClose() },
                 elevation = topBarElevation
             )
         },
         bottomSheet = {
-//                if (loginResult is AuthResult.Failure && loginResult.error == AuthResult.Error.NO_NETWORK_CONNECTION) {
-//                    NoNetworkBottomSheet(
-//                        onCloseClick = closeBottomSheet
-//                    )
-//                } else {
             CredentialsErrorBottomSheet(
                 onCloseClick = closeBottomSheet
             )
-//                }
         },
         bottomSheetState = bottomSheetState,
         showBottomSheet = loginState == LoginViewModel.LoginState.FAILURE,
@@ -243,11 +236,9 @@ fun LoginScreenPreview() {
         null,
         null,
         null,
-        null,
-        {},
         {},
         {},
         {},
         {}
-    )
+    ) {}
 }

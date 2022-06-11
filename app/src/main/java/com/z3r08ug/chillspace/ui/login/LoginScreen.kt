@@ -82,10 +82,17 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: Fir
 
                         Button(
                             onClick = {
-                                val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText)
-                                if (user != null) {
-                                    navController?.navigate(Screen.HomeScreen.route)
-                                }
+//                                val user = FirebaseUtils.loginUser(
+//                                    activity,
+//                                    auth,
+//                                    emailText,
+//                                    passwordText,
+//                                    onLogin,
+//                                    loginState
+//                                )
+//                                if (user != null) {
+//                                    navController?.navigate(Screen.HomeScreen.route)
+//                                }
                                       },
                             modifier = Modifier
                                 .constrainAs(login) {

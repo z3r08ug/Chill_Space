@@ -4,15 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.firebase.auth.FirebaseAuth
+import com.z3r08ug.chillspace.ui.createAccount.CreateAccountScreen
 import com.z3r08ug.chillspace.ui.login.NewLoginScreen
 import com.z3r08ug.chillspace.ui.login.LoginScreen
 import com.z3r0_8ug.ui_common.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -47,18 +51,23 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Screen.NewLoginScreen.route) { navBackStackEntry ->
                             NewLoginScreen(
-                                navController = navController,
                                 viewModel = hiltViewModel(),
                                 mainViewModel = hiltViewModel(),
-                                activity = this@MainActivity,
-                                auth = auth,
                                 arguments = navBackStackEntry.arguments,
-                                onLogin = { navController.navigate(Screen.HomeScreen.route) },
+                                auth = auth,
+                                activity = this@MainActivity,
                                 onClose = { navController.popBackStack() },
                                 onComplete = { navController.popBackStack() },
                                 onForgotPassword = {},
-                                onCreateAccount = {}
-                            )
+                                onCreateAccount = {
+                                    navController.navigate(
+                                        route = Screen.RegisterScreen.route
+                                    )
+                                }
+                            ) {
+                                Timber.d("Well at least we got here")
+                                navController.navigate(Screen.HomeScreen.route)
+                            }
                         }
                         composable(Screen.HomeScreen.route) { navBackStackEntry ->
                             HomeScreen(
@@ -69,6 +78,19 @@ class MainActivity : ComponentActivity() {
                                 user = currentUser,
                                 activity = this@MainActivity,
                                 openDrawer = null
+                            )
+                        }
+
+                        composable(Screen.RegisterScreen.route) { navBackStackEntry ->
+                            CreateAccountScreen(
+                                viewModel = hiltViewModel(),
+                                onClose = { navController.popBackStack() },
+                                onComplete = { navController.popBackStack() },
+                                onLogin = {
+
+                                },
+                                onNavigateHomeScreen = { navController.navigate(Screen.HomeScreen.route)},
+                                auth = auth
                             )
                         }
                     }

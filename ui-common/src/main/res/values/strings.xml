@@ -32,4 +32,8 @@
     <string name="and">and</string>
     <string name="dot">.</string>
     <string name="comma">,</string>
+    <string name="first_name">First Name</string>
+    <string name="first_name_required">First name is required</string>
+    <string name="last_name">Last Name</string>
+    <string name="last_name_required">Last name is required.</string>
 </resources>

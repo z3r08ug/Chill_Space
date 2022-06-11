@@ -1,19 +1,17 @@
 package com.z3r08ug.chillspace.ui.login
 
 import android.app.Activity
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.AuthResult
-import com.z3r08ug.chillspace.Screen.HomeScreen
 import com.z3r08ug.chillspace.utils.FirebaseUtils
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.asInputData
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.merge
 import com.z3r0_8ug.ui_common.framework.util.Dispatchers
 import dagger.hilt.android.lifecycle.HiltViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +19,8 @@ class LoginViewModel @Inject constructor(
     savedState: SavedStateHandle,
     dispatchers: Dispatchers,
 ) : ViewModel() {
-    val username = savedState.getLiveData("login", "").asInputData()
+//    val username = savedState.getLiveData("login", "").asInputData()
+    val username = MutableLiveData("").asInputData()
     val password = MutableLiveData("").asInputData()
 
     val loginAllowed = username.merge(password) { username, pass ->
@@ -33,13 +32,13 @@ class LoginViewModel @Inject constructor(
     fun login(activity: Activity?, auth: FirebaseAuth?, emailText: String, passwordText: String, onLogin: () -> Unit) {
         if (loginAllowed.value == true) {
             loginState.postValue(LoginState.SENDING)
-            val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText)
-            if (user != null) {
-                onLogin()
-            } else {
-                loginState.postValue(LoginState.FAILURE)
-            }
+            val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText,
+                { onLogin() }, loginState)
         }
+    }
+
+    private fun test() {
+        Timber.d("Test message")
     }
 
     private fun updateLoginState(result: AuthResult) {

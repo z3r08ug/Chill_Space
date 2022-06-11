@@ -76,8 +76,12 @@ fun HomeScreen(
                                 scope.launch {
                                     drawerState.close()
                                 }
-                                navController?.navigate(route) {
-                                    launchSingleTop = true
+                                if (route != Screen.NewLoginScreen.route) {
+                                    navController?.navigate(route) {
+                                        launchSingleTop = true
+                                    }
+                                } else {
+                                    navController?.navigate(route)
                                 }
                             })
                         },
@@ -85,9 +89,6 @@ fun HomeScreen(
                         gesturesEnabled = drawerState.isOpen
                     ) {
 
-                    }
-                    ConstraintLayout {
-                        
                     }
                 }
             )
