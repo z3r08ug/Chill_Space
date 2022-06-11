@@ -1,4 +1,4 @@
-package com.z3r08ug.chillspace.ui.theme
+package com.z3r08ug.chillspace.ui.login
 
 import android.app.Activity
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -40,6 +40,7 @@ import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.Screen
+import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
 import com.z3r08ug.chillspace.utils.FirebaseUtils
 import com.z3r0_8ug.ui_common.component.AppScaffold
 
@@ -81,10 +82,17 @@ fun LoginScreen(navController: NavHostController?, arguments: Bundle?, auth: Fir
 
                         Button(
                             onClick = {
-                                val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText)
-                                if (user != null) {
-                                    navController?.navigate(Screen.HomeScreen.route)
-                                }
+//                                val user = FirebaseUtils.loginUser(
+//                                    activity,
+//                                    auth,
+//                                    emailText,
+//                                    passwordText,
+//                                    onLogin,
+//                                    loginState
+//                                )
+//                                if (user != null) {
+//                                    navController?.navigate(Screen.HomeScreen.route)
+//                                }
                                       },
                             modifier = Modifier
                                 .constrainAs(login) {

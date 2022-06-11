@@ -85,7 +85,6 @@ fun AppScaffold(
 }
 
 @Composable
-@OptIn(ExperimentalAnimationApi::class)
 private fun MainScaffold(
     showContentScrim: Boolean,
     toolbar: @Composable () -> Unit,

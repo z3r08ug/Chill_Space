@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.auth.FirebaseAuth
 
 
 @Composable
@@ -38,5 +39,17 @@ fun Drawer(
                 fontSize = 18.sp
             )
         }
+
+        Spacer(Modifier.height(24.dp))
+        Text(
+            text = "Logout",
+            style = MaterialTheme.typography.h4,
+            fontSize = 18.sp,
+            modifier = Modifier.clickable {
+                val auth = FirebaseAuth.getInstance()
+                auth.signOut()
+                onDestinationClicked(Screen.NewLoginScreen.route)
+            }
+        )
     }
 }

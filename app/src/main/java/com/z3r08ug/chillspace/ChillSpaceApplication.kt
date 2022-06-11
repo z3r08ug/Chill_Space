@@ -15,25 +15,25 @@ import javax.inject.Inject
 class ChillSpaceApplication : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
-//    @Inject
-//    lateinit var lifecycleMonitor: LifecycleMonitor
+    @Inject
+    lateinit var lifecycleMonitor: LifecycleMonitor
 
     override fun onCreate() {
         super.onCreate()
 
-//        setupLogging()
+        setupLogging()
 //        setupAnalytics()
 //        setupCrashlytics()
 //        setupTheme()
 
-//        ProcessLifecycleOwner.get().lifecycle.addObserver(lifecycleMonitor)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(lifecycleMonitor)
     }
 
-//    private fun setupLogging() {
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(Timber.DebugTree())
-//        }
-//    }
+    private fun setupLogging() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+    }
 
 //    private fun setupAnalytics() {
 //        // TODO: setup a production (& beta) proxy

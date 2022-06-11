@@ -93,6 +93,7 @@
 
     <string name="terms_of_use">Terms of Use</string>
     <string name="disclaimers">Disclaimers</string>
+    <string name="email_invalid">Email is invalid.</string>
 
     <plurals name="prompts_title">
         <item quantity="zero">%d Tasks</item>

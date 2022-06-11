@@ -1,6 +1,8 @@
 package com.z3r08ug.chillspace.ui.login
 
+import android.app.Activity
 import android.content.res.Configuration
+import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
@@ -25,11 +27,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.R.string
+import com.z3r08ug.chillspace.Screen.LoginScreen
 import com.z3r08ug.chillspace.ui.login.segment.CredentialsErrorBottomSheet
 import com.z3r08ug.chillspace.ui.login.segment.LoginFields
 import com.z3r08ug.chillspace.ui.login.segment.SupportFields
+import com.z3r08ug.chillspace.utils.MainViewModel
 import com.z3r0_8ug.ui_common.component.AppScaffold
 import com.z3r0_8ug.ui_common.component.NavIconStyle
 import com.z3r0_8ug.ui_common.component.Toolbar
@@ -41,23 +46,36 @@ import kotlinx.coroutines.launch
 @Composable
 fun NewLoginScreen(
     viewModel: LoginViewModel?,
+    mainViewModel: MainViewModel?,
+    arguments: Bundle?,
+    auth: FirebaseAuth?,
+    activity: Activity?,
     onClose: () -> Unit,
     onComplete: () -> Unit,
     onForgotPassword: () -> Unit,
-    onCreateAccount: () -> Unit
+    onCreateAccount: () -> Unit,
+    onLogin: () -> Unit
 ) {
+    mainViewModel?.setCurrentScreen(LoginScreen)
     viewModel?.loginState?.let {
         ScreenContent(
-        loginState = it,
-        loginAllowed = viewModel.loginAllowed,
-        username = viewModel.username,
-        password = viewModel.password,
-        login = { viewModel.login() },
-        onForgotPassword = { onForgotPassword() },
-        onCreateAccount = { onCreateAccount() },
-        onClose = { onClose() },
-        onComplete = { onComplete() }
-    )
+            loginState = it,
+            loginAllowed = viewModel.loginAllowed,
+            username = viewModel.username,
+            password = viewModel.password,
+            login = {
+                viewModel.login(
+                    activity = activity,
+                    auth = auth,
+                    emailText = viewModel.username.value?.value ?: "",
+                    passwordText = viewModel.password.value?.value ?: "",
+                    onLogin = { onLogin() }
+                )
+            },
+            onForgotPassword = { onForgotPassword() },
+            onCreateAccount = { onCreateAccount() },
+            onClose = { onClose }
+        ) { onComplete() }
     }
 }
 
@@ -82,7 +100,7 @@ fun ScreenContent(
     Screen(
         loginState = loginState,
         allowLogin = allowLogin,
-        username = username,
+        username = username as InputData<String?>,
         password = password,
         login = login,
         onForgotPassword = onForgotPassword,
@@ -103,7 +121,7 @@ private fun Screen(
     onCreateAccount: () -> Unit,
     onClose: () -> Unit,
     onComplete: () -> Unit
-    ) {
+) {
     val scrollState = rememberScrollState()
 
     ScreenFrame(
@@ -141,7 +159,9 @@ private fun Screen(
 
             SupportFields(
                 onForgotPasswordClick = onForgotPassword,
-                onCreateAccountClick = onCreateAccount
+                onCreateAccountClick = {
+                    onCreateAccount()
+                }
             )
         }
     }
@@ -185,20 +205,14 @@ private fun ScreenFrame(
                     focusManager.clearFocus()
                     login()
                 },
-                onNavIconClick = onClose,
+                onNavIconClick = { onClose() },
                 elevation = topBarElevation
             )
         },
         bottomSheet = {
-//                if (loginResult is AuthResult.Failure && loginResult.error == AuthResult.Error.NO_NETWORK_CONNECTION) {
-//                    NoNetworkBottomSheet(
-//                        onCloseClick = closeBottomSheet
-//                    )
-//                } else {
             CredentialsErrorBottomSheet(
                 onCloseClick = closeBottomSheet
             )
-//                }
         },
         bottomSheetState = bottomSheetState,
         showBottomSheet = loginState == LoginViewModel.LoginState.FAILURE,
@@ -218,9 +232,13 @@ private fun ScreenFrame(
 fun LoginScreenPreview() {
     NewLoginScreen(
         null,
+        null,
+        null,
+        null,
+        null,
         {},
         {},
         {},
         {}
-    )
+    ) {}
 }
