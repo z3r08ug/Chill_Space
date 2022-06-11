@@ -1,4 +1,4 @@
-package com.z3r08ug.chillspace
+package com.z3r08ug.chillspace.ui.home
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,10 +11,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseUser
-import com.z3r08ug.chillspace.ui.home.HomeViewModel
+import com.z3r08ug.chillspace.Drawer
+import com.z3r08ug.chillspace.Screen
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
 import com.z3r08ug.chillspace.utils.MainViewModel
 import kotlinx.coroutines.launch
