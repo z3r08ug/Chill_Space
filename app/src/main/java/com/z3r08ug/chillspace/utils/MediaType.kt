@@ -1,6 +1,6 @@
 package com.z3r08ug.chillspace.utils
 
-internal enum class MediaType(val type: String) {
+enum class MediaType(val type: String) {
     IMAGE_ALL("image/*"),
     IMAGE_GIF("image/gif"),
     IMAGE_PNG("image/png"),

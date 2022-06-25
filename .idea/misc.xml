@@ -52,6 +52,7 @@
         <entry key="app/src/main/res/drawable/ic_lock_24.xml" value="0.1" />
         <entry key="ui-common/src/main/java/com/z3r0_8ug/ui_common/component/AppTextField.kt" value="0.1" />
         <entry key="ui-common/src/main/java/com/z3r0_8ug/ui_common/component/Toolbar.kt" value="0.1" />
+        <entry key="ui-common/src/main/java/com/z3r0_8ug/ui_common/component/menu/SpeedDial.kt" value="0.1" />
       </map>
     </option>
   </component>
