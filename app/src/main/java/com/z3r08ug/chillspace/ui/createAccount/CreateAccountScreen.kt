@@ -66,12 +66,16 @@ fun Content(
     val emailInput by viewModel.email.observeAsState(emptyInput())
     val usernameInput by viewModel.username.observeAsState(emptyInput())
     val passwordInput by viewModel.password.observeAsState(emptyInput())
+    val dobInput by viewModel.dob.observeAsState(emptyInput())
+    val allowCreateAccount by viewModel.allowCreateAccount.observeAsState(initial = false)
 
     Screen(
         viewModel = viewModel,
         email = emailInput,
         username = usernameInput,
         password = passwordInput,
+        dob = dobInput,
+        allowCreateAccount = allowCreateAccount,
         auth = auth,
         onClose = onClose,
         onLogin = onLogin,
@@ -86,14 +90,17 @@ private fun Screen(
     email: InputData<String?>,
     username: InputData<String?>,
     password: InputData<String?>,
+    dob: InputData<String?>,
+    allowCreateAccount: Boolean,
     auth: FirebaseAuth?,
     onClose: () -> Unit,
     onLogin: () -> Unit,
-    onNavigateHomeScreen: () -> Unit
+    onNavigateHomeScreen: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
     val scrollState = rememberScrollState()
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     ScreenFrame(
         viewModel = viewModel,
@@ -102,6 +109,8 @@ private fun Screen(
         email = email,
         username = username,
         password = password,
+        dob = dob,
+        allowCreateAccount = allowCreateAccount,
         auth = auth,
         onClose = onClose,
         onLogin = onLogin,
@@ -120,8 +129,14 @@ private fun Screen(
                 email = email,
                 username = username,
                 password = password,
+                dob = dob,
                 onEntryCompeteClick = {
-                    val result = viewModel?.createAccount(auth, context, onNavigateHomeScreen)
+                    val result = viewModel?.createAccount(
+                        auth,
+                        context,
+                        onNavigateHomeScreen,
+                        coroutineScope
+                    )
                     if (result != null) {
                         onLogin()
                     }
@@ -140,26 +155,15 @@ private fun ScreenFrame(
     email: InputData<String?>,
     username: InputData<String?>,
     password: InputData<String?>,
+    dob: InputData<String?>,
+    allowCreateAccount: Boolean,
     auth: FirebaseAuth?,
     onClose: () -> Unit,
     onLogin: () -> Unit,
     onNavigateHomeScreen: () -> Unit,
-    content: @Composable (PaddingValues) -> Unit,
+    content: @Composable (PaddingValues) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
-//    val sending = remember(creationState) {
-//        creationState == AccountCreationViewModel.CreationState.SENDING
-//    }
-//    val showBottomSheet = remember(creationState) {
-//        creationState == AccountCreationViewModel.CreationState.FAILURE
-//    }
-//    val offlineError = remember(creationResult) {
-//        creationResult is AuthResult.Failure && creationResult.error == AuthResult.Error.NO_NETWORK_CONNECTION
-//    }
-//    val usernameError = remember(creationResult) {
-//        creationResult is AuthResult.Failure && creationResult.error == AuthResult.Error.USERNAME_UNAVAILABLE
-//    }
-
     val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
     val closeBottomSheet = {
         coroutineScope.launch {
@@ -184,7 +188,7 @@ private fun ScreenFrame(
                 title = stringResource(string.auth_create_account),
                 navIconStyle = NavIconStyle.CLOSE,
                 endButtonTitle = stringResource(string.auth_create),
-                endButtonEnabled = !email.hasError,
+                endButtonEnabled = allowCreateAccount,
                 endButtonLoading = creating,
                 endButtonAction = {
                     creating = true
@@ -192,6 +196,7 @@ private fun ScreenFrame(
                     val result = viewModel?.createAccount(
                         auth = auth,
                         context = context,
+                        coroutineScope = coroutineScope,
                         onNavigateHomeScreen = onNavigateHomeScreen
                     )
                     if (result != null) {
@@ -232,13 +237,6 @@ private fun ScreenFrame(
         },
         content = content
     )
-}
-
-private fun updateUI(firebaseUser: FirebaseUser?, onNavigateHomeScreen: () -> Unit) {
-    //Login was successful, move to HomeScreen
-    if (firebaseUser != null) {
-        onNavigateHomeScreen()
-    }
 }
 
 @Preview(showBackground = true)

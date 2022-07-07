@@ -57,6 +57,7 @@ fun NewLoginScreen(
     onLogin: () -> Unit
 ) {
     mainViewModel?.setCurrentScreen(LoginScreen)
+    val coroutineScope = rememberCoroutineScope()
     viewModel?.loginState?.let {
         ScreenContent(
             loginState = it,
@@ -64,13 +65,16 @@ fun NewLoginScreen(
             username = viewModel.username,
             password = viewModel.password,
             login = {
-                viewModel.login(
-                    activity = activity,
-                    auth = auth,
-                    emailText = viewModel.username.value?.value ?: "",
-                    passwordText = viewModel.password.value?.value ?: "",
-                    onLogin = { onLogin() }
-                )
+                coroutineScope.launch {
+                    viewModel.login(
+                        activity = activity,
+                        auth = auth,
+                        emailText = viewModel.username.value?.value ?: "",
+                        passwordText = viewModel.password.value?.value ?: "",
+                        onLogin = { onLogin() }
+                    )
+                }
+
             },
             onForgotPassword = { onForgotPassword() },
             onCreateAccount = { onCreateAccount() },

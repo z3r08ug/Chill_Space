@@ -16,11 +16,13 @@
     <string name="auth_id_or_login">Chill Space ID or Email</string>
     <string name="auth_email">Email</string>
     <string name="auth_username">Username</string>
+    <string name="auth_dob">Date of birth</string>
     <string name="auth_delete_account">Delete Account</string>
-    <string name="auth_delete_account_title">Are you sure you want to delete your Elements Account?</string>
+    <string name="auth_delete_account_title">Are you sure you want to delete your Chill Space Account?</string>
     <string name="auth_delete_account_message">If you delete your account, your financial information will be discarded and you will no longer be connected to your advisor (if applicable). This action cannot be undone.</string>
-    <string name="auth_invalid_username_empty">Your Elements ID cannot be empty</string>
-    <string name="auth_invalid_username_email">Your Elements ID cannot be an email address</string>
+    <string name="auth_invalid_username_empty">Your Chill Space ID cannot be empty</string>
+    <string name="auth_invalid_username_email">Your Chill Space ID cannot be an email address</string>
+    <string name="auth_invalid_birthdate">Your birthday cannot be in the future</string>
     <string name="auth_password">Password</string>
     <string name="auth_password_reset">Reset Password</string>
     <string name="auth_password_reset_expired_title">Dang. Password reset code expired.</string>
@@ -47,7 +49,7 @@
 
     <string name="logout_notice">Did you miss us?</string>
     <string name="logout_notice_message">We know your financial life is important to you. Sign back in to keep it healthy.</string>
-    <string name="logout_new_to_elements">New to Elements?</string>
+    <string name="logout_new_to_chill_space">New to Chill Space?</string>
     <string name="logout_create_account">Create an account</string>
 
     <string name="account_delete_notice">Sorry to see you go.</string>
@@ -84,6 +86,7 @@
     <string name="okay">Okay</string>
 
     <string name="required_field">*Required</string>
+    <string name="birth_date_format">MM-dd-yyyy</string>
     <string name="percent_symbol">%</string>
 
     <!-- Generic -->

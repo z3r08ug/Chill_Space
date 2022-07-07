@@ -29,10 +29,10 @@ class LoginViewModel @Inject constructor(
 
     val loginState = MutableLiveData(LoginState.PENDING)
 
-    fun login(activity: Activity?, auth: FirebaseAuth?, emailText: String, passwordText: String, onLogin: () -> Unit) {
+    suspend fun login(activity: Activity?, auth: FirebaseAuth?, emailText: String, passwordText: String, onLogin: () -> Unit) {
         if (loginAllowed.value == true) {
             loginState.postValue(LoginState.SENDING)
-            val user = FirebaseUtils.loginUser(activity, auth, emailText, passwordText,
+            FirebaseUtils.loginUser(activity, auth, emailText, passwordText,
                 { onLogin() }, loginState)
         }
     }

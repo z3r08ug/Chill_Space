@@ -60,11 +60,13 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
-    implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
+    implementation "androidx.navigation:navigation-compose:2.5.0-rc02"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha02"
     implementation "com.google.accompanist:accompanist-insets:0.23.1"
     // If using insets-ui
     implementation "com.google.accompanist:accompanist-insets-ui:0.23.1"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
 
     implementation "androidx.activity:activity-ktx:1.4.0"
     implementation "androidx.fragment:fragment-ktx:1.4.1"

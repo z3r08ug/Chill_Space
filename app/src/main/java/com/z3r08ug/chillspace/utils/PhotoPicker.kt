@@ -6,7 +6,6 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -16,16 +15,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.google.firebase.auth.FirebaseUser
 import com.z3r08ug.chillspace.R
-import com.z3r08ug.chillspace.ui.home.savePhoto
-import com.z3r08ug.chillspace.ui.home.saveVideo
+import com.z3r08ug.chillspace.utils.FirebaseUtils.Companion.savePhoto
 import com.z3r0_8ug.ui_common.component.menu.SpeedDialMenu
 import com.z3r0_8ug.ui_common.component.menu.SpeedDialMenuItem
 import com.z3r0_8ug.ui_common.theme.AppTheme
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @Composable
 fun PhotoPicker(user: FirebaseUser?) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
     var imageUri by remember { mutableStateOf<Pair<Uri?, MediaType?>>(Pair(null, null)) }
     val startForSingleModeResult =
         rememberLauncherForActivityResult(GetPhotoPickerSingleContent()) { uri: Uri? ->
@@ -39,14 +39,18 @@ fun PhotoPicker(user: FirebaseUser?) {
                 }
                 MediaType.IMAGE_PNG, MediaType.IMAGE_JPG -> {
                     imageUri = Pair(resUri, resType)
-                    savePhoto(imageUri as Pair<Uri?, MediaType>, user, context)
+                    coroutineScope.launch {
+                        savePhoto(imageUri as Pair<Uri?, MediaType>, user, context)
+                    }
                 }
                 MediaType.VIDEO_ALL, MediaType.VIDEO_WEBM -> {
                     Toast.makeText(context, "TODO impl...", Toast.LENGTH_SHORT).show()
                 }
                 MediaType.VIDEO_MP4 -> {
                     imageUri = Pair(resUri, resType)
-                    saveVideo(imageUri as Pair<Uri?, MediaType>, user, context)
+                    coroutineScope.launch {
+//                        saveVideo(imageUri as Pair<Uri?, MediaType>, user, context)
+                    }
                 }
                 null -> {
 //                    Toast.makeText(context, "handle error...", Toast.LENGTH_SHORT).show()

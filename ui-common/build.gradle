@@ -74,6 +74,8 @@ dependencies {
     implementation libs.android.materialUi
     implementation libs.bundles.android.lifecycle
 
+    implementation "io.coil-kt:coil-compose:2.1.0"
+
     // Unit Test Dependencies
     testImplementation libs.bundles.test.core
     testImplementation libs.bundles.test.android

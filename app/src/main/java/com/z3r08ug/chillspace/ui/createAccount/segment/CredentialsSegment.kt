@@ -17,6 +17,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.z3r08ug.chillspace.R.*
 import com.z3r08ug.chillspace.ui.shared.ui.component.PasswordTextField
+import com.z3r08ug.chillspace.utils.MaskVisualTransformation
 import com.z3r0_8ug.ui_common.component.AppTextField
 import com.z3r0_8ug.ui_common.component.AppTextFieldTopPadding
 import com.z3r0_8ug.ui_common.framework.ui.InputData
@@ -28,6 +29,7 @@ fun Credentials(
   email: InputData<String?>,
   username: InputData<String?>,
   password: InputData<String?>,
+  dob: InputData<String?>,
   onEntryCompeteClick: () -> Unit
 ) {
   val focusManager = LocalFocusManager.current
@@ -113,6 +115,35 @@ fun Credentials(
         focusManager.clearFocus()
         onEntryCompeteClick()
       }
+    )
+
+    Spacer(modifier = Modifier.height(16.dp - AppTextFieldTopPadding))
+    AppTextField(
+      value = dob.value,
+      onValueChange = dob.onValueChange,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 24.dp)
+        .autofill(AutofillType.BirthDateFull) {
+          if (it.length <= 8) {
+            dob.onValueChange(it)
+          }
+        },
+      label = stringResource(string.auth_dob),
+      helperText = stringResource(string.birth_date_format),
+      errorMessage = stringResource(string.auth_invalid_birthdate),
+      hasError = username.hasError,
+      keyboardOptions = KeyboardOptions(
+        autoCorrect = false,
+        imeAction = ImeAction.Next,
+        keyboardType = KeyboardType.Number
+      ),
+      keyboardActions = KeyboardActions {
+        focusManager.moveFocus(FocusDirection.Down)
+      },
+      singleLine = true,
+      alwaysLayoutHelperText = true,
+      visualTransformation = MaskVisualTransformation("##/##/####")
     )
   }
 }
