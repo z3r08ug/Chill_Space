@@ -39,9 +39,7 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
-import com.z3r08ug.chillspace.Screen
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
-import com.z3r08ug.chillspace.utils.FirebaseUtils
 import com.z3r0_8ug.ui_common.component.AppScaffold
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)

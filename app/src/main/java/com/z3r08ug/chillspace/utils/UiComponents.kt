@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.z3r08ug.chillspace.Screen
+import com.z3r08ug.chillspace.ui.util.Screen
 
 @Composable
 fun TopBar(title: String = "", buttonIcon: ImageVector, onButtonClicked: () -> Unit) {

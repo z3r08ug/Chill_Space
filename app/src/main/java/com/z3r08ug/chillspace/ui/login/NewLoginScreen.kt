@@ -30,7 +30,7 @@ import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.R.string
-import com.z3r08ug.chillspace.Screen.LoginScreen
+import com.z3r08ug.chillspace.ui.util.Screen.NewLoginScreen
 import com.z3r08ug.chillspace.ui.login.segment.CredentialsErrorBottomSheet
 import com.z3r08ug.chillspace.ui.login.segment.LoginFields
 import com.z3r08ug.chillspace.ui.login.segment.SupportFields
@@ -56,7 +56,7 @@ fun NewLoginScreen(
     onCreateAccount: () -> Unit,
     onLogin: () -> Unit
 ) {
-    mainViewModel?.setCurrentScreen(LoginScreen)
+    mainViewModel?.setCurrentScreen(NewLoginScreen)
     val coroutineScope = rememberCoroutineScope()
     viewModel?.loginState?.let {
         ScreenContent(

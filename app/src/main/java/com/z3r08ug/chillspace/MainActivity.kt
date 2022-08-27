@@ -1,11 +1,8 @@
 package com.z3r08ug.chillspace
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,8 +11,9 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.firebase.auth.FirebaseAuth
 import com.z3r08ug.chillspace.ui.createAccount.CreateAccountScreen
 import com.z3r08ug.chillspace.ui.home.HomeScreen
-import com.z3r08ug.chillspace.ui.login.NewLoginScreen
 import com.z3r08ug.chillspace.ui.login.LoginScreen
+import com.z3r08ug.chillspace.ui.login.NewLoginScreen
+import com.z3r08ug.chillspace.ui.util.Screen
 import com.z3r0_8ug.ui_common.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

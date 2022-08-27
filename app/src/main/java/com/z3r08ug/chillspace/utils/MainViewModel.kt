@@ -3,7 +3,7 @@ package com.z3r08ug.chillspace.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.z3r08ug.chillspace.Screen
+import com.z3r08ug.chillspace.ui.util.Screen
 
 class MainViewModel : ViewModel() {
 

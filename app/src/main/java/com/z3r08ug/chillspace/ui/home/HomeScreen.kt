@@ -2,7 +2,8 @@ package com.z3r08ug.chillspace.ui.home
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -14,14 +15,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseUser
-import com.z3r08ug.chillspace.ui.util.Drawer
-import com.z3r08ug.chillspace.Screen
-import com.z3r0_8ug.ui_common.model.Photo
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
+import com.z3r08ug.chillspace.ui.util.Drawer
+import com.z3r08ug.chillspace.ui.util.Screen
 import com.z3r08ug.chillspace.utils.MainViewModel
 import com.z3r08ug.chillspace.utils.PhotoPicker
 import com.z3r0_8ug.ui_common.component.AppScaffold
 import com.z3r0_8ug.ui_common.component.PostList
+import com.z3r0_8ug.ui_common.model.Photo
 import com.z3r0_8ug.ui_common.model.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
