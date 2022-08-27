@@ -1,4 +1,4 @@
-package com.z3r08ug.chillspace
+package com.z3r08ug.chillspace.ui.util
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -11,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.auth.FirebaseAuth
+import com.z3r08ug.chillspace.R
 
 
 @Composable

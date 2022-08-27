@@ -10,18 +10,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.z3r0_8ug.ui_common.model.Photo
+import com.z3r0_8ug.ui_common.model.UserInfo
 import com.z3r0_8ug.ui_common.theme.AppTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PostList(
-    photos: List<Photo>
+    photos: List<Photo>,
+    userInfo: UserInfo
 ) {
     LazyColumn(
         Modifier.background(AppTheme.colors.background),
@@ -44,19 +44,23 @@ fun PostList(
                         ) {
                             Column(
                             ) {
-                                Avatar(
-                                    monogram = "TU",
-                                    color = AppTheme.colors.secondary,
-                                    size = 40.dp
+                                userInfo.userName?.let {
+                                    Avatar(
+                                        monogram = it,
+                                        color = AppTheme.colors.secondary,
+                                        size = 40.dp
+                                    )
+                                }
+                            }
+                            userInfo.userName?.let {
+                                Text(
+                                    text = it,
+                                    color = AppTheme.colors.almostBlack,
+                                    modifier = Modifier
+                                        .padding(8.dp),
+                                    fontWeight = FontWeight.Bold
                                 )
                             }
-                            Text(
-                                text = "Username",
-                                color = AppTheme.colors.almostBlack,
-                                modifier = Modifier
-                                    .padding(8.dp),
-                                fontWeight = FontWeight.Bold
-                            )
                         }
                         Row(
                             verticalAlignment = Alignment.CenterVertically

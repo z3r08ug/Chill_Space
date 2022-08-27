@@ -1,5 +1,7 @@
-package com.z3r08ug.chillspace
+package com.z3r08ug.chillspace.utils
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.z3r08ug.chillspace.Screen
 
 @Composable
 fun TopBar(title: String = "", buttonIcon: ImageVector, onButtonClicked: () -> Unit) {
@@ -25,6 +28,7 @@ fun TopBar(title: String = "", buttonIcon: ImageVector, onButtonClicked: () -> U
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun BottomBar(modifier: Modifier = Modifier, screens: List<Screen>, navController: NavController) {
     BottomNavigation(modifier = modifier) {

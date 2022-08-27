@@ -3,23 +3,23 @@ package com.z3r08ug.chillspace.utils
 import android.app.Activity
 import android.content.Context
 import android.net.Uri
-import android.text.format.DateUtils
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.z3r0_8ug.ui_common.model.Photo
 import com.z3r08ug.chillspace.ui.login.LoginViewModel
-import com.z3r08ug.chillspace.utils.DateUtils.Companion.convertToLocalDate
 import com.z3r08ug.chillspace.utils.DateUtils.Companion.isUserUnder18
+import com.z3r0_8ug.ui_common.model.UserInfo
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.HashMap
 
 class FirebaseUtils {
     companion object {
@@ -72,7 +72,8 @@ class FirebaseUtils {
                 try {
                     val photo = hashMapOf(
                         "url" to storageResult?.storage?.downloadUrl?.await(),
-                        "mediaType" to imageUri.second.type
+                        "mediaType" to imageUri.second.type,
+                        "timeStamp" to LocalDateTime.now()
                     )
 
                     val ref = user?.let {
@@ -112,12 +113,35 @@ class FirebaseUtils {
                     photoList.add(
                         Photo(
                             photo.data?.get("url") as String,
-                            photo.data?.get("mediaType") as String
+                            photo.data?.get("mediaType") as String,
+                            photo.data?.get("timeStamp") as HashMap<Any, Any>
                         )
                     )
                 }
             }
             return photoList.toList()
+        }
+
+        suspend fun getUserInfo(
+            user: FirebaseUser?
+        ): UserInfo {
+            val userData = user?.uid?.let {
+                FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(it)
+                    .collection("user_info")
+                    .document()
+                    .get()
+                    .await()
+            }?.data
+
+            return UserInfo(
+                dob = userData?.get("dob") as LocalDate?,
+                email = userData?.get("email") as String?,
+                uid = userData?.get("uid") as String?,
+                under_18 = userData?.get("under_18") as Boolean?,
+                userName = userData?.get("userName") as String?
+            )
         }
 
         suspend fun saveUser(
@@ -153,7 +177,7 @@ class FirebaseUtils {
                         Toast.LENGTH_SHORT
                     ).show()
                 } catch (exception: Exception) {
-                    Timber.d("Error saving user data to db ${exception.cause}")
+                    Timber.d("Error saving user data to db $exception")
                 }
             }
         }

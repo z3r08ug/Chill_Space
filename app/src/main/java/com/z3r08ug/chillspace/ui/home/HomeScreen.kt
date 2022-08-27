@@ -2,38 +2,29 @@ package com.z3r08ug.chillspace.ui.home
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import coil.compose.AsyncImage
 import com.google.firebase.auth.FirebaseUser
-import com.z3r08ug.chillspace.Drawer
+import com.z3r08ug.chillspace.ui.util.Drawer
 import com.z3r08ug.chillspace.Screen
 import com.z3r0_8ug.ui_common.model.Photo
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
 import com.z3r08ug.chillspace.utils.MainViewModel
 import com.z3r08ug.chillspace.utils.PhotoPicker
 import com.z3r0_8ug.ui_common.component.AppScaffold
-import com.z3r0_8ug.ui_common.component.Avatar
 import com.z3r0_8ug.ui_common.component.PostList
-import com.z3r0_8ug.ui_common.theme.AppTheme
+import com.z3r0_8ug.ui_common.model.UserInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import java.util.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -65,6 +56,10 @@ fun HomeScreen(
 
     val photos by lazy {
         viewModel?.photos
+    }
+
+    val userInfo by lazy {
+        viewModel?.userInfo
     }
 
     ChillSpaceTheme {
@@ -113,7 +108,7 @@ fun HomeScreen(
                         Box(
 
                         ) {
-                            Posts(viewModel, coroutineScope, user, photos)
+                            Posts(viewModel, coroutineScope, user, photos, userInfo)
                             PhotoPicker(user = user)
                         }
                     }
@@ -123,18 +118,20 @@ fun HomeScreen(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Posts(
     viewModel: HomeViewModel?,
     coroutineScope: CoroutineScope,
     user: FirebaseUser?,
-    photos: MutableState<List<Photo>>?
+    photos: MutableState<List<Photo>>?,
+    userInfo: MutableState<UserInfo?>?
 ) {
     viewModel?.getPhotoList(coroutineScope, user)
+    viewModel?.getUserInfo(coroutineScope, user)
 
-    if (photos != null) {
-        PostList(photos.value)
+
+    if (photos != null && userInfo != null) {
+        userInfo.value?.let { PostList(photos.value, it) }
     }
 }
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.z3r08ug.chillspace.AuthResult
+import com.z3r08ug.chillspace.utils.AuthResult
 import com.z3r08ug.chillspace.utils.FirebaseUtils
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.asInputData
 import com.z3r0_8ug.ui_common.framework.ui.lifecycle.merge

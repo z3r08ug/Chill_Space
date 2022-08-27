@@ -1,4 +1,4 @@
-package com.z3r08ug.chillspace
+package com.z3r08ug.chillspace.utils
 
 import java.util.*
 

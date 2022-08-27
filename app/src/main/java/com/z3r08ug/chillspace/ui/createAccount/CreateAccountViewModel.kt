@@ -62,8 +62,8 @@ class CreateAccountViewModel @Inject constructor(
                 ?.addOnCompleteListener(context as Activity) { task ->
                     if (task.isSuccessful && task.isComplete) {
                         // Sign in success, update UI with the signed-in user's information
-                        Timber.d(TAG, "createUserWithEmail:success")
-                        val user = auth.currentUser
+                        Timber.d(TAG, "createUserWithEmail:success ${task.result.user?.uid}")
+                        val user = task.result.user
                         coroutineScope.launch {
                             DateUtils.convertToLocalDate(dob)?.let {
                                 FirebaseUtils.saveUser(

@@ -1,4 +1,4 @@
-package com.z3r08ug.chillspace
+package com.z3r08ug.chillspace.ui.util
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -6,8 +6,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.z3r08ug.chillspace.Screen.HomeScreen
-import com.z3r08ug.chillspace.Screen.ProfileScreen
+import com.z3r08ug.chillspace.R
 
 sealed class Screen(val route: String, @StringRes val resourceId: Int, val title: String, val icon: ImageVector) {
     object LoginScreen : Screen("login", R.string.login, "Login", Icons.Filled.Person)
@@ -18,4 +17,4 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int, val title
     object SettingsScreen : Screen("settings", R.string.settings, "Settings", Icons.Filled.Settings)
 }
 
-val screens = listOf(HomeScreen, ProfileScreen, Screen.SettingsScreen)
+val screens = listOf(Screen.HomeScreen, Screen.ProfileScreen, Screen.SettingsScreen)
