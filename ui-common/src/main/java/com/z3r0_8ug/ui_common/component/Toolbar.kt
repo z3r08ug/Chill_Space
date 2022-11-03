@@ -80,6 +80,12 @@ fun Toolbar(
         loading = endButtonLoading,
         onClick = it
       )
+      EndButton(
+        text = endButtonTitle,
+        enabled = endButtonEnabled,
+        loading = endButtonLoading,
+        onClick = it
+      )
     }
   }
 
@@ -244,6 +250,7 @@ private fun EndButton(
   text: String,
   enabled: Boolean,
   loading: Boolean,
+  icon: Int? = null,
   onClick: () -> Unit
 ) {
   val colors = AppTheme.colors.toolbarButton()
@@ -290,6 +297,11 @@ private fun EndButton(
           fontSize = 12.sp,
           color = AppTheme.colors.surface
         )
+      )
+      Icon(
+        painter = painterResource(R.drawable.ic_arrow_back_24dp),
+        contentDescription = stringResource(R.string.navigate_up),
+        tint = AppTheme.colors.secondary
       )
     }
   }

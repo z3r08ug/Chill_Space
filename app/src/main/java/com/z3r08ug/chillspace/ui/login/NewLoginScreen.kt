@@ -148,7 +148,7 @@ private fun Screen(
             val image: Painter = painterResource(id = R.drawable.chill_space)
             Image(
                 painter = image,
-                contentDescription = "Chill Space Logo",
+                contentDescription = stringResource(string.chill_space_logo),
                 modifier = Modifier
                     .fillMaxWidth()
 

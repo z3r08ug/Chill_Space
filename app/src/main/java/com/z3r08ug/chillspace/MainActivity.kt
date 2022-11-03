@@ -76,8 +76,7 @@ class MainActivity : ComponentActivity() {
                                 viewModel = hiltViewModel(),
                                 arguments = navBackStackEntry.arguments,
                                 user = currentUser,
-                                activity = this@MainActivity,
-                                openDrawer = null
+                                activity = this@MainActivity
                             )
                         }
 

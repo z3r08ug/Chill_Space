@@ -12,9 +12,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseUser
+import com.z3r08ug.chillspace.R
 import com.z3r08ug.chillspace.ui.theme.ChillSpaceTheme
 import com.z3r08ug.chillspace.ui.util.Drawer
 import com.z3r08ug.chillspace.ui.util.Screen
@@ -22,6 +24,7 @@ import com.z3r08ug.chillspace.utils.MainViewModel
 import com.z3r08ug.chillspace.utils.PhotoPicker
 import com.z3r0_8ug.ui_common.component.AppScaffold
 import com.z3r0_8ug.ui_common.component.PostList
+import com.z3r0_8ug.ui_common.component.Toolbar
 import com.z3r0_8ug.ui_common.model.Photo
 import com.z3r0_8ug.ui_common.model.UserInfo
 import kotlinx.coroutines.CoroutineScope
@@ -36,11 +39,9 @@ fun HomeScreen(
     arguments: Bundle?,
     user: FirebaseUser?,
     activity: Activity?,
-    openDrawer: (() -> Unit)?,
 ) {
     mainViewModel?.setCurrentScreen(Screen.HomeScreen)
 
-    val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -86,6 +87,10 @@ fun HomeScreen(
                                 Icon(Icons.Filled.Menu, contentDescription = "")
                             }
                         })
+
+                    Toolbar(
+                        title = stringResource(R.string.chill_space),
+                        onNavIconClick = { /*TODO*/ })
                 },
                 content = {
                     ModalDrawer(
@@ -145,7 +150,6 @@ fun previewHomeScreen() {
         viewModel = null,
         arguments = null,
         user = null,
-        activity = null,
-        openDrawer = { }
+        activity = null
     )
 }
