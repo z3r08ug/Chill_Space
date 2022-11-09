@@ -80,12 +80,6 @@ fun Toolbar(
         loading = endButtonLoading,
         onClick = it
       )
-      EndButton(
-        text = endButtonTitle,
-        enabled = endButtonEnabled,
-        loading = endButtonLoading,
-        onClick = it
-      )
     }
   }
 
@@ -298,11 +292,13 @@ private fun EndButton(
           color = AppTheme.colors.surface
         )
       )
-      Icon(
-        painter = painterResource(R.drawable.ic_arrow_back_24dp),
-        contentDescription = stringResource(R.string.navigate_up),
-        tint = AppTheme.colors.secondary
-      )
+      if (icon != null) {
+        Icon(
+          painter = painterResource(icon),
+          contentDescription = stringResource(R.string.navigate_up),
+          tint = AppTheme.colors.secondary
+        )
+      }
     }
   }
 

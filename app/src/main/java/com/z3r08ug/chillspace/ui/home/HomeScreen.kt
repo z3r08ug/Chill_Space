@@ -87,10 +87,6 @@ fun HomeScreen(
                                 Icon(Icons.Filled.Menu, contentDescription = "")
                             }
                         })
-
-                    Toolbar(
-                        title = stringResource(R.string.chill_space),
-                        onNavIconClick = { /*TODO*/ })
                 },
                 content = {
                     ModalDrawer(

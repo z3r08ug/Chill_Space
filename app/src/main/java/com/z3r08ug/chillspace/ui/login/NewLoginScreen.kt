@@ -104,7 +104,7 @@ fun ScreenContent(
     Screen(
         loginState = loginState,
         allowLogin = allowLogin,
-        username = username as InputData<String?>,
+        username = username,
         password = password,
         login = login,
         onForgotPassword = onForgotPassword,
